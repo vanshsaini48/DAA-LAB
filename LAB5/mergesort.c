@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 void merge(int a[], int low, int mid, int high) {
     int i = low, j = mid + 1, k = 0;
     int temp[100];
