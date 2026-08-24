@@ -1,69 +1,42 @@
+// Optimized implementation of Bubble sort
+#include <stdbool.h>
 #include <stdio.h>
 
-void merge(int a[], int l, int m, int r)
-{
-    int i = l, j = m + 1, k = 0;
-    int temp[r - l + 1];
-
-    while (i <= m && j <= r)
-        temp[k++] = (a[i] < a[j]) ? a[i++] : a[j++];
-
-    while (i <= m)
-        temp[k++] = a[i++];
-
-    while (j <= r)
-        temp[k++] = a[j++];
-
-    for (i = l, k = 0; i <= r; i++, k++)
-        a[i] = temp[k];
+void swap(int* xp, int* yp){
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
 }
 
-void bubbleSort(int a[], int n)
-{
-    int i, j, flag;
-
-    for (i = 0; i < n - 1; i++)
-    {
-        flag = 0;
-
-        for (j = 0; j < n - i - 1; j++)
-        {
-            if (a[j] > a[j + 1])
-            {
-                int t = a[j];
-                a[j] = a[j + 1];
-                a[j + 1] = t;
-                flag = 1;
+void bubbleSort(int arr[], int n){
+    int i, j;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+                swapped = true;
             }
         }
 
-        if (!flag)
+        
+        if (swapped == false)
             break;
     }
 }
 
-void divide(int a[], int l, int r)
-{
-    if (l >= r)
-        return;
-
-    int m = (l + r) / 2;
-
-    divide(a, l, m);
-    divide(a, m + 1, r);
-
-    bubbleSort(a + l, r - l + 1);
+void printArray(int arr[], int size){
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
 }
 
-int main()
-{
-    int a[] = {5, 2, 8, 1, 3, 7};
-    int n = sizeof(a) / sizeof(a[0]);
-
-    divide(a, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
-        printf("%d ", a[i]);
-
+int main(){
+    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    bubbleSort(arr, n);
+    printf("Sorted array: \n");
+    printArray(arr, n);
     return 0;
 }

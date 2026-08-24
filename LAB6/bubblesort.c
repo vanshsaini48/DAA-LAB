@@ -1,6 +1,13 @@
 #include <stdio.h>
 
-void bubbleSort(int a[], int n)
+void swap(int* xp, int* yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void bubbleSort(int arr[], int n)
 {
     int i, j;
 
@@ -8,38 +15,30 @@ void bubbleSort(int a[], int n)
     {
         for (j = 0; j < n - i - 1; j++)
         {
-            if (a[j] > a[j + 1])
+            if (arr[j] > arr[j + 1])
             {
-                int t = a[j];
-                a[j] = a[j + 1];
-                a[j + 1] = t;
+                swap(&arr[j], &arr[j + 1]);
             }
         }
     }
 }
 
-void divide(int a[], int l, int r)
+void printArray(int arr[], int size)
 {
-    if (l >= r)
-        return;
-
-    int m = (l + r) / 2;
-
-    divide(a, l, m);
-    divide(a, m + 1, r);
-
-    bubbleSort(a + l, r - l + 1);
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
 }
 
 int main()
 {
-    int a[] = {5, 2, 8, 1, 3, 7};
-    int n = sizeof(a) / sizeof(a[0]);
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
 
-    divide(a, 0, n - 1);
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    for (int i = 0; i < n; i++)
-        printf("%d ", a[i]);
+    bubbleSort(arr, n);
+
+    printf("Sorted array: \n");
+    printArray(arr, n);
 
     return 0;
 }
