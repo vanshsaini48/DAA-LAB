@@ -1,4 +1,4 @@
-
+//kruskal
 #include <stdio.h>
 #include <stdlib.h>
 int comparator(const int p1[], const int p2[])

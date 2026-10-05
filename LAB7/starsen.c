@@ -1,4 +1,6 @@
+//starsen 
 #include <stdio.h>
+
 
 void add(int n, int A[n][n], int B[n][n], int C[n][n])
 {

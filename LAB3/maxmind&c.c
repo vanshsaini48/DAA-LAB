@@ -1,3 +1,4 @@
+//maxmin
 #include <stdio.h>
 
 struct MinMax {

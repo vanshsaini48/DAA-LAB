@@ -1,3 +1,4 @@
+//linear
 #include <stdio.h>
 
 int main() {
