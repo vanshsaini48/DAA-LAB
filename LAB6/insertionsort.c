@@ -7,7 +7,7 @@ void insertion(int a[], int n)
 
     if (n <= 1)
         return;
-
+ 
     insertion(a, n - 1);
 
     key = a[n - 1];
